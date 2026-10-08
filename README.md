@@ -361,6 +361,5 @@ El DHCP en si no m'ha costat d'entendre. El que m'ha costat han estat els detall
 
 ## Documentació
 
-- [Ubuntu Server Docs — isc-kea](https://ubuntu.com/server/docs/how-to-install-and-configure-isc-kea)
 - [KEA — The DHCPv4 Server](https://kea.readthedocs.io/en/kea-1.6.2/arm/dhcp4-srv.html)
 - [Exemple de configuració](https://github.com/carlesalonso/kea-dhcp4-demo)
