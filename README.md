@@ -115,7 +115,7 @@ systemctl list-unit-files | grep kea
 
 El dhcp6 i el ddns han de sortir com a `disabled`. El dhcp4 ha de sortir com a `enabled`.
 
-![Els serveis del Kea](img/01-serveis-kea.png)
+![Els serveis del Kea](/img/1.png)
 
 ---
 
@@ -197,7 +197,7 @@ sudo systemctl status kea-dhcp4-server
 
 Ha de sortir `active (running)` en verd.
 
-![El servei funcionant](img/02-status-active.png)
+![El servei funcionant](/img/2.png)
 
 ---
 
@@ -211,9 +211,9 @@ sudo apt install wireshark
 sudo wireshark
 ```
 
-![Instal·lant el Wireshark](img/03-instal-wireshark.png)
+![Instal·lant el Wireshark](/img/3.png)
 
-![El Wireshark obert](img/04-wireshark-obert.png)
+![El Wireshark obert](/img/4.png)
 
 ---
 
@@ -225,7 +225,7 @@ Aquí l'ordre és molt important. Si canvio la xarxa abans de començar a gravar
 
 **2.** Sense aturar la gravació, canvio el client de NAT a xarxa interna `SMX-LAB`.
 
-![El client a la xarxa interna](img/05-client-xarxa-interna.png)
+![El client a la xarxa interna](/img/5.png)
 
 **3.** Apago i torno a encendre la connexió cablejada des de la icona de xarxa. També es pot fer escrivint això:
 
@@ -235,7 +235,7 @@ sudo nmcli device down enp0s3 && sudo nmcli device up enp0s3
 
 **4.** Aturo la gravació i la deso.
 
-![Els paquets DHCP](img/06-paquets-dhcp.png)
+![Els paquets DHCP](/img/6.png)
 
 Hi surten els quatre paquets: Discover, Offer, Request i ACK. També hi surten dos NAK.
 
@@ -280,7 +280,7 @@ Al Zorin vaig a `Configuración → Red`. Clico la roda dentada de la connexió 
 
 La IP és del pool. La porta d'enllaç i el DNS són els que vaig posar al fitxer. Funciona.
 
-![El client amb la IP del pool](img/07-client-ip-pool.png)
+![El client amb la IP del pool](/img/7.png)
 
 Al servidor miro les concessions.
 
@@ -290,7 +290,7 @@ cat /var/lib/kea/kea-leases4.csv
 
 Cada cop que el client renova, s'hi afegeix una línia nova. L'última és la que val.
 
-![El fitxer de concessions](img/08-leases-pool.png)
+![El fitxer de concessions](/img/8.png)
 
 ---
 
@@ -319,7 +319,7 @@ Dues coses que he de vigilar:
 - Després del `]` del pool ara hi va una coma. Ja no és l'últim del bloc.
 - La MAC ha de ser la del meu client. No la de l'exemple de classe.
 
-![El fitxer amb la reserva](img/09-conf-reserva.png)
+![El fitxer amb la reserva](/img/9.png)
 
 Ara ho aplico.
 
@@ -329,15 +329,15 @@ sudo systemctl restart kea-dhcp4-server
 sudo systemctl status kea-dhcp4-server
 ```
 
-![El servei després de la reserva](img/10-status-reserva.png)
+![El servei després de la reserva](/img/10.png)
 
 Al client apago i torno a encendre la connexió. Ara ja em dóna la 192.169.10.55.
 
-![El client amb la IP reservada](img/11-client-ip-reservada.png)
+![El client amb la IP reservada](/img/11.png)
 
 Al fitxer de concessions es veu tot el canvi. Primer les línies amb la 192.169.10.10. Després una línia amb el `valid_lifetime` a 0, que vol dir que allibera aquella adreça. I al final les línies noves amb la 192.169.10.55.
 
-![Les concessions amb la reserva](img/12-leases-reserva.png)
+![Les concessions amb la reserva](/img/12.png)
 
 ---
 
